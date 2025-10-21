@@ -2,22 +2,32 @@ import React, { useState } from "react";
 import { FaBars, FaSearch } from "react-icons/fa";
 import { FiBell, FiLogOut, FiSettings, FiUser } from "react-icons/fi";
 
-const Navbar = ({sidebarToggle, setSidebarToggle}) => {
+const Navbar = ({sidebarToggle, setSidebarToggle, isMobile}) => {
   const [isProfileOpen, setIsProfileOpen] = useState(false);
+
+
+  const navbarClasses = `bg-indigo-600 p-4 flex justify-between transition-all <duration-300 ${
+    isMobile 
+      ? 'fixed top-0 left-0 right-0 z-50' 
+      : sidebarToggle 
+        ? '' 
+        : 'ml-64'
+  }`
+
   return (
-    <nav className={`${sidebarToggle ? '' : 'ml-64 '}bg-indigo-600 p-4 flex justify-between`}>
+    <nav className={navbarClasses}>
       <div className="flex items-center text-xl">
         <FaBars 
           className="text-white me-4 cursor-pointer" 
           onClick={() => setSidebarToggle(!sidebarToggle)}
         />
-        <span className="text-white font-semibold">E-commerce</span>
+        <span className="text-white font-semibold text-nowrap">E-commerce</span>
       </div>
       <div className="flex items-center gap-x-5">
         <div className="relative md:w-65">
           <span className="relative md:absolute inset-y-0 left-0 flex pl-2 items-center">
-            <button className="p-1 focus:outline-none text-white md:text-black">
-              <FaSearch className="" />
+            <button className=" block p-1 focus:outline-none text-white md:text-black">
+              <FaSearch className="text-red-600 " />
             </button>
           </span>
           <input
@@ -48,7 +58,7 @@ const Navbar = ({sidebarToggle, setSidebarToggle}) => {
             <div className="w-8 h-8 bg-indigo-500 rounded-full flex items-center justify-center">
               <FiUser className="h-4 w-4 text-white" />
             </div>
-            <span className="text-sm font-medium text-white hidden md:block">
+            <span className="text-sm font-medium hover:text-black text-white hidden md:block">
               John Doe
             </span>
           </button>
