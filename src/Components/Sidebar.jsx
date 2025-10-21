@@ -1,9 +1,9 @@
 import React from 'react'
 import { FaCog, FaHome, FaPoll, FaRegEnvelope, FaRegFileAlt } from 'react-icons/fa'
 
-const Sidebar = () => {
+const Sidebar = ({sidebarToggle}) => {
   return (
-    <div className='w-64 bg-indigo-500 fixed h-full px-4 py-2'>
+    <div className={`${sidebarToggle ? 'hidden' : 'block'} w-64 bg-indigo-500 fixed h-full px-4 py-2`}>
         <div className='mx-4 my-2'>
             <h1 className='text-3xl font-semibold text-white'>Dashboard</h1>
         </div>
